@@ -44,6 +44,7 @@ const Register = () => {
       const response = await axios.post("/api/auth/register", data, config);
       if (response.data) {
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("role", response.data.role);
         navigate("/");
       }
     } catch (error) {
@@ -171,7 +172,12 @@ const Register = () => {
                   <Button
                     variant="outline"
                     type="submit"
-                    style={{ marginTop: "1rem", color:"#e07a5f", border:"2px solid #e07a5f", fontWeight: "600"}}
+                    style={{
+                      marginTop: "1rem",
+                      color: "#e07a5f",
+                      border: "2px solid #e07a5f",
+                      fontWeight: "600",
+                    }}
                   >
                     Register
                   </Button>

@@ -10,10 +10,11 @@ import Login from "./components/pages/LoginPage";
 import Register from "./components/pages/RegisterPage";
 import Home from "./components/pages/HomePage";
 import StorePage from "./components/pages/StorePage";
+import UpdatePage from "./components/pages/UpdatePage";
 
 // css files
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./components/screens/styles.scss"
+import "./components/screens/styles.scss";
 
 const App = () => {
   const options = {
@@ -26,11 +27,25 @@ const App = () => {
     <AlertProvider template={AlertTemplate} {...options}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-
-          <Route path="/store" element={<PrivateRoute><StorePage/></PrivateRoute>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/store/add"
+            element={
+              <PrivateRoute>
+                <UpdatePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/store"
+            element={
+              <PrivateRoute>
+                <StorePage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AlertProvider>

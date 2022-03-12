@@ -13,6 +13,7 @@ function Head() {
   function logoutHandler() {
     try {
       localStorage.removeItem("authToken");
+      localStorage.removeItem("role");
     } catch (err) {
       console.log(err);
     }

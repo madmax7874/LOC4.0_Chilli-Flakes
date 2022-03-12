@@ -1,5 +1,5 @@
 const ErrorResponse = require("../utils/errorResponse");
-const {User} = require("../models/User");
+const { User } = require("../models/User");
 const generateToken = require("../utils/generateToken");
 const bcrypt = require("bcryptjs");
 
@@ -21,7 +21,7 @@ exports.login = async (req, res, next) => {
     }
 
     const token = generateToken(user._id);
-    return res.status(200).json({ sucess: true, token });
+    return res.status(200).json({ sucess: true, token, role: user.role });
   } catch (err) {
     next(err);
   }
@@ -40,7 +40,7 @@ exports.register = async (req, res, next) => {
       role,
     });
     const token = generateToken(user._id);
-    return res.status(200).json({ sucess: true, token });
+    return res.status(200).json({ sucess: true, token, role: role });
   } catch (err) {
     next(err);
   }

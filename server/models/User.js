@@ -28,8 +28,8 @@ const UserSchema = new mongoose.Schema({
 
 const ItemSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name"] },
-  quantity: { type: Number, required: [true, "Please provide name"]  },
-  price:{ type: Number, required: [true, "Please provide name"]  },
+  quantity: { type: Number, required: [true, "Please provide name"] },
+  price: { type: Number, required: [true, "Please provide name"] },
 });
 
 const OrderSchema = new mongoose.Schema(
@@ -46,14 +46,14 @@ const OrderSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Users",
     },
-    orderDetails: [
-      {
-        items: { type: mongoose.Types.ObjectId, ref: "Items" },
-        quantity: { type: Number, required: true },
-        paymode: { type: String, required: true },
-        status: { type: String, default: "Placed" },
-      },
-    ],
+    qrcode:{
+      type: String,
+      required: true
+    },
+    item: { type: mongoose.Types.ObjectId, ref: "Items" },
+    quantity: { type: Number, required: true },
+    paymode: { type: String, required: true },
+    status: { type: String, default: "Placed" },
   },
   {
     timestamps: true,
@@ -64,4 +64,4 @@ const ItemModel = mongoose.model("Items", ItemSchema);
 const OrderModel = mongoose.model("Orders", OrderSchema);
 const User = mongoose.model("Users", UserSchema);
 
-module.exports = {User, OrderModel, ItemModel};
+module.exports = { User, OrderModel, ItemModel };

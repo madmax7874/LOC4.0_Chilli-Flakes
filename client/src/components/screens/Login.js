@@ -33,6 +33,7 @@ const Login = () => {
     try {
       const response = await axios.post("/api/auth/login", data, config);
       localStorage.setItem("authToken", response.data.token);
+      localStorage.setItem("role", response.data.role);
       navigate("/");
     } catch (error) {
       alert.show(`${error.response.data.error}`, { type: "error" });
@@ -44,21 +45,24 @@ const Login = () => {
       <div className="login-screen">
         <Container className="login-container">
           <Row>
-            <div className="col-12" style={{textAlign:"center", padding:"1rem"}}>
+            <div
+              className="col-12"
+              style={{ textAlign: "center", padding: "1rem" }}
+            >
               <h3>Welcome Back!</h3>
             </div>
-            <div className="col-lg-6" style={{textAlign:"center"}}>
-              <Image fluid={true}
-                src={login}
-              ></Image>
+            <div className="col-lg-6" style={{ textAlign: "center" }}>
+              <Image fluid={true} src={login}></Image>
             </div>
             <div className="col-lg-6 form-div">
               <Form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <h3 style={{textAlign:"center"}}>Login</h3>
+                <h3 style={{ textAlign: "center" }}>Login</h3>
                 <Form.Group controlId="email">
                   <Form.Label style={{ fontSize: "1rem" }}>
                     Email address{" "}
-                    <span style={{ color: "#d00000", fontSize: "1rem" }}>*</span>
+                    <span style={{ color: "#d00000", fontSize: "1rem" }}>
+                      *
+                    </span>
                   </Form.Label>
                   <Form.Control
                     type="tel"
@@ -68,13 +72,16 @@ const Login = () => {
                     className={`${errors.email ? "input-error" : ""}`}
                   />
                   <p style={{ color: "red" }}>
-                    {errors.email?.type === "required" && "Email address is required"}
+                    {errors.email?.type === "required" &&
+                      "Email address is required"}
                   </p>
                 </Form.Group>
                 <Form.Group controlId="password">
                   <Form.Label style={{ fontSize: "1rem" }}>
                     Password{" "}
-                    <span style={{ color: "#d00000", fontSize: "1rem" }}>*</span>
+                    <span style={{ color: "#d00000", fontSize: "1rem" }}>
+                      *
+                    </span>
                   </Form.Label>
                   <Form.Control
                     type="password"
@@ -85,7 +92,8 @@ const Login = () => {
                     className={`${errors.password ? "input-error" : ""}`}
                   />
                   <p style={{ color: "red" }}>
-                    {errors.password?.type === "required" && "Password is required"}
+                    {errors.password?.type === "required" &&
+                      "Password is required"}
                   </p>
                 </Form.Group>
                 <p>
@@ -96,12 +104,17 @@ const Login = () => {
                   <Button
                     variant="outline"
                     type="submit"
-                    style={{ marginTop: "1rem", color:"#e07a5f", border:"2px solid #e07a5f", fontWeight: "600"}}
+                    style={{
+                      marginTop: "1rem",
+                      color: "#e07a5f",
+                      border: "2px solid #e07a5f",
+                      fontWeight: "600",
+                    }}
                   >
                     Login
                   </Button>
                 </div>
-            </Form>
+              </Form>
             </div>
           </Row>
         </Container>
