@@ -12,6 +12,7 @@ import Home from "./components/pages/HomePage";
 import StorePage from "./components/pages/StorePage";
 import UpdatePage from "./components/pages/UpdatePage";
 import OrdersPage from "./components/pages/OrdersPage";
+import SingleOrderPage from "./components/pages/SingleOrderPage";
 
 // css files
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -52,6 +53,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <OrdersPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <PrivateRoute>
+                <SingleOrderPage />
               </PrivateRoute>
             }
           />

@@ -41,7 +41,7 @@ function Store() {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         };
-        const url = `/api/private/order`;
+        const url = `/api/private/order/0`;
         try {
           const { data } = await axios.post(url, item, config);
           if (data.success) {
