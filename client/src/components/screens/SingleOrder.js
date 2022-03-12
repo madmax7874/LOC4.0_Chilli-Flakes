@@ -1,10 +1,24 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Container, Row, Col, ProgressBar } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, ProgressBar, Image, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-
 const axios = require("axios");
+
+function convertURIToImageData(URI) {
+  return new Promise(function(resolve, reject) {
+    if (URI == null) return reject();
+    var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        image = new Image();
+    image.addEventListener('load', function() {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      resolve(context.getImageData(0, 0, canvas.width, canvas.height));
+    }, false);
+    image.src = URI;
+  });
+}
 
 function SingleOrder() {
   const { id } = useParams();
@@ -21,7 +35,6 @@ function SingleOrder() {
     const url = `/api/private/order/${id}`;
     try {
       const { data } = await axios.get(url, config);
-      console.log(data)
       setOrder(data);
       setLoading(true)
     } catch (error) {
@@ -29,9 +42,37 @@ function SingleOrder() {
     }
   }, []);
 
+  convertURIToImageData(order.qrcode).then(function(imageData) {
+    setOrder((prevState) => ({
+      ...prevState,
+      qrcode: imageData,
+    }));
+  });
+
+  const updatingStatus = async (id) => {
+    const roler = localStorage.getItem('role')
+    let mystatus;
+    mystatus = roler=="manufacturer" ? "At distributor" : roler == "distributor" ? "Delivered" : "Placed"
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      },
+    };
+    const url = `/api/private/order/${id}`;
+    try {
+      const { data } = await axios.put(url,{status:mystatus}, config);
+      setOrder(data);
+      // setLoading(false)
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
   return (
     <Fragment>
-      {loading?(
+      {loading ? (
       <Container           
       style={{
         padding: "2rem",
@@ -53,15 +94,23 @@ function SingleOrder() {
             </div>
           </Col>
           <Col md={6}>
+            <Image src={order.qrcode }></Image>
           </Col>
           <Col sm={12}>
-              Status: 
+              Status: Order {order.status}
               <ProgressBar>
-                <ProgressBar striped variant="danger" now={order.status=="Placed"? 33:0} key={1} />
-                <ProgressBar variant="warning" now={order.status=="At distributor"? 33:0} key={2} />
-                <ProgressBar striped variant="success" now={order.status=="Delivered"? 33:0} key={3} />
+                <ProgressBar striped variant="danger" now={33} key={1} />
+                <ProgressBar variant="warning" now={order.status!="Placed"? 33:0} key={2} />
+                <ProgressBar striped variant="success" now={order.status=="Delivered"? 34:0} key={3} />
               </ProgressBar>
           </Col>
+          {localStorage.getItem('role')!="consumer" && (
+            <Col style={{margin:"1rem",textAlign:"center"}}>
+              <Button onClick={()=>updatingStatus(order._id)} >
+                Update Status
+              </Button>
+            </Col>
+          )}
         </Row>
       </Container>
 
