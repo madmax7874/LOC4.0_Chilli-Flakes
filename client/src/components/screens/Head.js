@@ -37,16 +37,28 @@ function Head() {
               style={{ maxHeight: "100px" }}
             >
               <NavLink
-                style={({isActive}) => ({
+                style={({ isActive }) => ({
                   color: isActive ? "#e07a5f" : "#141850",
-                  fontWeight: isActive ?"600" : "500",
-                  borderBottom:  isActive ? "2px solid #e07a5f" : ""
+                  fontWeight: isActive ? "600" : "500",
+                  borderBottom: isActive ? "2px solid #e07a5f" : "",
                 })}
                 className="nav-link"
                 aria-current="page"
-                to="#"
+                to="/store"
               >
-                Order
+                Store
+              </NavLink>
+              <NavLink
+                style={({ isActive }) => ({
+                  color: isActive ? "#e07a5f" : "#141850",
+                  fontWeight: isActive ? "600" : "500",
+                  borderBottom: isActive ? "2px solid #e07a5f" : "",
+                })}
+                className="nav-link"
+                aria-current="page"
+                to="/track"
+              >
+                Track
               </NavLink>
             </Nav>
             <br />
@@ -56,9 +68,9 @@ function Head() {
             >
               <NavLink
                 onClick={() => logoutHandler()}
-                style={({isActive}) => ({
+                style={({ isActive }) => ({
                   color: isActive ? "#e07a5f" : "#141850",
-                  fontWeight: isActive ?"700" : "500"
+                  fontWeight: isActive ? "700" : "500",
                 })}
                 className="nav-link"
                 aria-current="page"
@@ -76,18 +88,18 @@ function Head() {
       <Navbar style={navbar} expand="lg" variant="light" className="sticky-top">
         <Container>
           <Navbar.Brand>
-          <NavLink
-                style={({isActive}) => ({
-                  color: isActive ? "#e07a5f" : "#141850",
-                  fontWeight: isActive ?"600" : "500",
-                  borderBottom:  isActive ? "2px solid #e07a5f" : ""
-                })}
-                className="nav-link"
-                aria-current="page"
-                to="/"
-              >
-                Home
-              </NavLink>
+            <NavLink
+              style={({ isActive }) => ({
+                color: isActive ? "#e07a5f" : "#141850",
+                fontWeight: isActive ? "600" : "500",
+                borderBottom: isActive ? "2px solid #e07a5f" : "",
+              })}
+              className="nav-link"
+              aria-current="page"
+              to="/"
+            >
+              Home
+            </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
@@ -100,10 +112,10 @@ function Head() {
               style={{ maxHeight: "100px", marginLeft: "auto" }}
             >
               <NavLink
-                style={({isActive}) => ({
+                style={({ isActive }) => ({
                   color: isActive ? "#e07a5f" : "#141850",
-                  fontWeight: isActive ?"600" : "500",
-                  borderBottom:  isActive ? "2px solid #e07a5f" : ""
+                  fontWeight: isActive ? "600" : "500",
+                  borderBottom: isActive ? "2px solid #e07a5f" : "",
                 })}
                 className="nav-link"
                 aria-current="page"
@@ -112,10 +124,10 @@ function Head() {
                 Login
               </NavLink>
               <NavLink
-                style={({isActive}) => ({
+                style={({ isActive }) => ({
                   color: isActive ? "#e07a5f" : "#141850",
-                  fontWeight: isActive ?"600" : "500",
-                  borderBottom:  isActive ? "2px solid #e07a5f" : ""
+                  fontWeight: isActive ? "600" : "500",
+                  borderBottom: isActive ? "2px solid #e07a5f" : "",
                 })}
                 className="nav-link"
                 aria-current="page"

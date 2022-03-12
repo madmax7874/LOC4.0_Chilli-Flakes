@@ -28,7 +28,8 @@ const UserSchema = new mongoose.Schema({
 
 const ItemSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name"] },
-  quantity: { type: String },
+  quantity: { type: Number, required: [true, "Please provide name"]  },
+  price:{ type: Number, required: [true, "Please provide name"]  },
 });
 
 const OrderSchema = new mongoose.Schema(
@@ -63,4 +64,4 @@ const ItemModel = mongoose.model("Items", ItemSchema);
 const OrderModel = mongoose.model("Orders", OrderSchema);
 const User = mongoose.model("Users", UserSchema);
 
-(module.exports = User), OrderModel, ItemModel;
+module.exports = {User, OrderModel, ItemModel};

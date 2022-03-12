@@ -3,12 +3,13 @@ import { transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
 // Routing
-// import PrivateRoute from "./components/routing/PrivateRoute";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 // Screens
 import Login from "./components/pages/LoginPage";
 import Register from "./components/pages/RegisterPage";
 import Home from "./components/pages/HomePage";
+import StorePage from "./components/pages/StorePage";
 
 // css files
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
 
+          <Route path="/store" element={<PrivateRoute><StorePage/></PrivateRoute>} />
         </Routes>
       </BrowserRouter>
     </AlertProvider>
