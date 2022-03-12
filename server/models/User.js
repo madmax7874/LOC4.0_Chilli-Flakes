@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  fullname: {
+  name: {
     type: String,
     required: [true, "Please provide name"],
   },
@@ -18,68 +18,39 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  list:[{
-    text: {
-      type : String,
-      required: true,
-    },
-    isDone : {
-      type : Boolean,
-      required: true,
-    },
-  }],
-  details:[{
-    travelDates: {
-      type: Array,
-      required:true
-    },
-    startDate: {
-      type: Date,
-      required: true,
-    },
-    endDate: {
-      type: Date,
-      required: true,
-    },
-    destination: {
-      type: String,
-      required: true,
-    },
-    perDayDetails:[{
-      morningPlace:{
-        type: String,
-        required: true,
-      },
-      morningFood:{
-        type: String,
-        required: true, 
-      },
-      nightPlace:{
-        type: String,
-        required: true,
-      },
-      nightFood:{
-        type: String,
-        required: true,
-      }
-    }]
-  }],
-  expense:[{
-    category:{
-      type : String,
-      required: true,
-    },
-    text: {
-      type : String,
-      required: true,
-    },
-    amount : {
-      type : Number,
-      required: true,
-    },
-  }],
+  role: {
+    type: String,
+    required: [true, "Please choose a role"],
+  }
 });
 
-const User = mongoose.model("User", UserSchema);
+const ItemSchema = new mongoose.Schema({
+  name: {type: String, required: [true, "Please provide name"]},
+  quantity: {type: String},
+});
 
-module.exports = User;
+const OrderSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
+    },
+    orderDetails: [
+      {
+        items: { type: mongoose.Types.ObjectId, ref: "Items" },
+        quantity: { type: Number, required: true },
+        paymode: { type: String, required: true },
+        status: { type: String, default: "Placed" },
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const ItemModel = mongoose.model("Items", ItemSchema);
+const OrderModel = mongoose.model("Orders", OrderSchema);
+const User = mongoose.model("Users", UserSchema);
+
+module.exports = User,OrderModel,ItemModel;
