@@ -34,7 +34,6 @@ router.route("/orders").get(protect, async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const orders = await OrderModel.find({ consumer: decoded.id });
-    console.log(orders);
     // res.status(200).send(items);
   } catch (err) {
     next(err);
@@ -45,15 +44,15 @@ router.route("/order").post(async (req, res, next) => {
   try {
     // consumer - closest distributor
     // item, quantity, payment mode, status
-
+    console.log(req.body,req.headers)
     const { name, price, quantity } = req.body;
     token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = { _id: decoded.id };
     //check if user is manufracturer
-    const item = await ItemModel.create({ name, price, quantity });
+    // const item = await ItemModel.create({ name, price, quantity });
 
-    res.status(200).send({ success: true });
+    // res.status(200).send({ success: true });
   } catch (err) {
     next(err);
   }

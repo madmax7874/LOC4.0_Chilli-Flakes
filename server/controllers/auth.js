@@ -29,8 +29,8 @@ exports.login = async (req, res, next) => {
 
 // Register user
 exports.register = async (req, res, next) => {
-  const { fullname, email, password, role } = req.body;
-
+  const { fullname, email, password, role, lat, long } = req.body;
+  // console.log(req.body)
   try {
     const passwordHash = await bcrypt.hash(password, 10);
     const user = await User.create({
@@ -38,6 +38,8 @@ exports.register = async (req, res, next) => {
       email,
       password: passwordHash,
       role,
+      lat,
+      long
     });
     const token = generateToken(user._id);
     return res.status(200).json({ sucess: true, token, role: role });

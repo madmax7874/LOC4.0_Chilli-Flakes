@@ -57,6 +57,18 @@ function Head() {
                 })}
                 className="nav-link"
                 aria-current="page"
+                to="/orders"
+              >
+                Orders
+              </NavLink>
+              <NavLink
+                style={({ isActive }) => ({
+                  color: isActive ? "#e07a5f" : "#141850",
+                  fontWeight: isActive ? "600" : "500",
+                  borderBottom: isActive ? "2px solid #e07a5f" : "",
+                })}
+                className="nav-link"
+                aria-current="page"
                 to="/track"
               >
                 Track

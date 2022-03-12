@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from "react";
+import { useEffect, Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Form, Button, Container, Row, Image } from "react-bootstrap";
@@ -13,7 +13,7 @@ const Swal = require("sweetalert2");
 const Register = () => {
   const navigate = useNavigate();
   const alert = useAlert();
-
+  const [navi,setNavi]=useState({})
   const {
     register,
     handleSubmit,
@@ -22,10 +22,13 @@ const Register = () => {
   } = useForm();
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setNavi({lat:position.coords.latitude,long:position.coords.longitude})
+    });
     if (localStorage.getItem("authToken")) {
       navigate("/");
     }
-  });
+  },[]);
 
   const onSubmit = async (data) => {
     const config = {
@@ -41,7 +44,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("/api/auth/register", data, config);
+      const response = await axios.post("/api/auth/register", {...data,...navi}, config);
       if (response.data) {
         localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("role", response.data.role);

@@ -24,6 +24,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please choose a role"],
   },
+  lat:{
+    type: Number
+  },
+  long:{
+    type: Number
+  }
 });
 
 const ItemSchema = new mongoose.Schema({
