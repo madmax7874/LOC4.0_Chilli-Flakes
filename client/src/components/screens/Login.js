@@ -1,11 +1,12 @@
 import { Fragment, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Form, Button, Container, Row } from "react-bootstrap";
+import { Form, Button, Container, Row, Image } from "react-bootstrap";
 import { useAlert } from "react-alert";
 
 import axios from "axios";
 
+import login from "../../assets/login.svg";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -44,13 +45,13 @@ const Login = () => {
         <Container className="login-container">
           <Row>
             <div className="col-12" style={{textAlign:"center", padding:"1rem"}}>
-              <h3>Welcome Back! We've missed You</h3>
+              <h3>Welcome Back!</h3>
             </div>
-            {/* <div className="col-lg-6" style={{textAlign:"center"}}>
+            <div className="col-lg-6" style={{textAlign:"center"}}>
               <Image fluid={true}
-                src={image}
+                src={login}
               ></Image>
-            </div> */}
+            </div>
             <div className="col-lg-6 form-div">
               <Form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <h3 style={{textAlign:"center"}}>Login</h3>
