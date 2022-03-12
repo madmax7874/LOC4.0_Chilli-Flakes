@@ -38,6 +38,9 @@ function SingleOrder() {
         justifyContent: "space-evenly"
       }}>
         <Row>
+          <Col sm={12} style={{textAlign:'center'}}>
+            <h2>Order id: {order._id}</h2>
+          </Col>
           <Col md={6}>
             <div>
               Price: {order.item.price}
