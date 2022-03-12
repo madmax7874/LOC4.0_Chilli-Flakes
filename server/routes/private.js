@@ -40,7 +40,7 @@ router.route("/orders").get(protect, async (req, res, next) => {
   try {
     token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const orders = await OrderModel.find({ consumer: decoded.id });
+    const orders = await OrderModel.find({ consumer: decoded.id }).populate("item").populate("consumer").populate("distributor");
     console.log(orders)
     res.status(200).send(orders);
   } catch (err) {
