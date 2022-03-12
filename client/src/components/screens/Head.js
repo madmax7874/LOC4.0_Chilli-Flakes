@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 const navbar = {
   padding: "0.4rem 1rem",
   fontSize: "1.2rem",
-  backgroundColor:"#fff",
-  borderBottom: "1px solid rgba(0,0,0,0.2)"
+  backgroundColor: "#fff",
+  borderBottom: "1px solid rgba(0,0,0,0.2)",
 };
 
 function Head() {
@@ -49,7 +49,7 @@ function Head() {
                 Order
               </NavLink>
             </Nav>
-            <br/>
+            <br />
             <Nav
               className="my-2 my-lg-0"
               style={{ maxHeight: "100px", marginLeft: "auto" }}
@@ -90,7 +90,7 @@ function Head() {
               </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse >
+          <Navbar.Collapse>
             <Nav
               className="mr-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
