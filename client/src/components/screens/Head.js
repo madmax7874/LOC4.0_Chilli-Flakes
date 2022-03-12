@@ -45,7 +45,7 @@ function Head() {
                 })}
                 className="nav-link"
                 aria-current="page"
-                to="/store"
+                to="/"
               >
                 Store
               </NavLink>

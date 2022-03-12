@@ -29,7 +29,6 @@ const App = () => {
     <AlertProvider template={AlertTemplate} {...options}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
@@ -41,7 +40,7 @@ const App = () => {
             }
           />
           <Route
-            path="/store"
+            path="/"
             element={
               <PrivateRoute>
                 <StorePage />
