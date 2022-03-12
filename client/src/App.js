@@ -8,7 +8,7 @@ import AlertTemplate from "react-alert-template-basic";
 // Screens
 import Login from "./components/pages/LoginPage";
 import Register from "./components/pages/RegisterPage";
-// import Home from "./components/pages/HomePage";
+import Home from "./components/pages/HomePage";
 
 // css files
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,7 +25,7 @@ const App = () => {
     <AlertProvider template={AlertTemplate} {...options}>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home/>} /> */}
+          <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
 

@@ -147,9 +147,9 @@ const Register = () => {
                 </p>
                 <div style={{ textAlign: "center" }}>
                   <Button
-                    variant="primary"
+                    variant="outline"
                     type="submit"
-                    style={{ marginTop: "1rem" }}
+                    style={{ marginTop: "1rem", color:"#e07a5f", border:"2px solid #e07a5f", fontWeight: "600"}}
                   >
                     Register
                   </Button>
