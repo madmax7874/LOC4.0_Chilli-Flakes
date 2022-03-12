@@ -35,17 +35,20 @@ router
     }
   });
 
+  //get all orders
 router.route("/orders").get(protect, async (req, res, next) => {
   try {
     token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const orders = await OrderModel.find({ consumer: decoded.id });
-    // res.status(200).send(items);
+    console.log(orders)
+    res.status(200).send(orders);
   } catch (err) {
     next(err);
   }
 });
 
+//place an order
 router.route("/order").post(async (req, res, next) => {
   try {
     const { _id, name, price, quantity } = req.body;
@@ -80,7 +83,7 @@ router.route("/order").post(async (req, res, next) => {
       manufacturer: manufacturer._id,
       qrcode: "This is demo",
       item: _id,
-      quantity: quantity,
+      quantity: 1,
       paymode: "Cash",
     });
     // res.status(200).send({ success: true });

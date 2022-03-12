@@ -11,6 +11,7 @@ import Register from "./components/pages/RegisterPage";
 import Home from "./components/pages/HomePage";
 import StorePage from "./components/pages/StorePage";
 import UpdatePage from "./components/pages/UpdatePage";
+import OrdersPage from "./components/pages/OrdersPage";
 
 // css files
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -43,6 +44,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <StorePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <PrivateRoute>
+                <OrdersPage />
               </PrivateRoute>
             }
           />
