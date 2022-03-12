@@ -7,7 +7,7 @@ const axios = require("axios");
 const Swal = require("sweetalert2");
 
 function Store() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [store, getStore] = useState([]);
   useEffect(async () => {
@@ -25,7 +25,7 @@ function Store() {
     }
   }, []);
 
-  const orderConfirm=(item)=>{
+  const orderConfirm = (item) => {
     Swal.fire({
       title: "Place order?",
       icon: "warning",
@@ -43,16 +43,16 @@ function Store() {
         };
         const url = `/api/private/order`;
         try {
-          const { data } = await axios.post(url, item ,config);
+          const { data } = await axios.post(url, item, config);
           if (data.success) {
-            console.log(data)
+            console.log(data);
           }
         } catch (error) {
           console.log(error);
         }
       }
-    });  
-  }
+    });
+  };
 
   const ItemComponents = store.map((item, index) => {
     return (
@@ -61,7 +61,7 @@ function Store() {
           variant="top"
           src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
         />
-        <Card.Body style={{paddingBottom:"0.25rem"}}>
+        <Card.Body style={{ paddingBottom: "0.25rem" }}>
           <Card.Title style={{ textAlign: "center" }}>{item.name}</Card.Title>
           <hr />
           <Row>
@@ -70,11 +70,14 @@ function Store() {
             </Col>
             <br />
             <br />
-            <Col
-              sm={12}
-              style={{textAlign: "center" }}
-            >
-              <Button variant="success" style={{margin:"0.5rem"}} onClick={()=>orderConfirm(item)}>Order Now</Button>
+            <Col sm={12} style={{ textAlign: "center" }}>
+              <Button
+                variant="success"
+                style={{ margin: "0.5rem" }}
+                onClick={() => orderConfirm(item)}
+              >
+                Order Now
+              </Button>
             </Col>
             <br />
             <br />

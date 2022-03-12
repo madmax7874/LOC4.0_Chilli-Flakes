@@ -48,7 +48,7 @@ const OrderSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Users",
     },
-    manufracturer: {
+    manufacturer: {
       type: mongoose.Types.ObjectId,
       ref: "Users",
     },
