@@ -1,5 +1,5 @@
 const ErrorResponse = require("../utils/errorResponse");
-const User = require("../models/User");
+const {User} = require("../models/User");
 const generateToken = require("../utils/generateToken");
 const bcrypt = require("bcryptjs");
 
