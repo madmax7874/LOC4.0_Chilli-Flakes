@@ -31,7 +31,15 @@ const ItemSchema = new mongoose.Schema({
 
 const OrderSchema = new mongoose.Schema(
   {
-    user: {
+    consumer: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
+    },
+    distributor: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
+    },
+    manufracturer: {
       type: mongoose.Types.ObjectId,
       ref: "Users",
     },
