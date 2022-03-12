@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  fullname: {
+  name: {
     type: String,
     required: [true, "Please provide name"],
   },
@@ -18,66 +18,6 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  list:[{
-    text: {
-      type : String,
-      required: true,
-    },
-    isDone : {
-      type : Boolean,
-      required: true,
-    },
-  }],
-  details:[{
-    travelDates: {
-      type: Array,
-      required:true
-    },
-    startDate: {
-      type: Date,
-      required: true,
-    },
-    endDate: {
-      type: Date,
-      required: true,
-    },
-    destination: {
-      type: String,
-      required: true,
-    },
-    perDayDetails:[{
-      morningPlace:{
-        type: String,
-        required: true,
-      },
-      morningFood:{
-        type: String,
-        required: true, 
-      },
-      nightPlace:{
-        type: String,
-        required: true,
-      },
-      nightFood:{
-        type: String,
-        required: true,
-      }
-    }]
-  }],
-  expense:[{
-    category:{
-      type : String,
-      required: true,
-    },
-    text: {
-      type : String,
-      required: true,
-    },
-    amount : {
-      type : Number,
-      required: true,
-    },
-  }],
 });
 
 const User = mongoose.model("User", UserSchema);
