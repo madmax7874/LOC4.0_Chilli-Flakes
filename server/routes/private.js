@@ -4,6 +4,7 @@ const { protect } = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 const ErrorResponse = require("../utils/errorResponse");
 const { User, ItemModel, OrderModel } = require("../models/User");
+const QRious = require("qrious");
 
 const distance = (x, y) => {
   return Math.sqrt(
@@ -40,20 +41,27 @@ router.route("/orders").get(protect, async (req, res, next) => {
   try {
     token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const orders = await OrderModel.find({ consumer: decoded.id }).populate("item").populate("consumer").populate("distributor");
+    const orders = await OrderModel.find({ consumer: decoded.id })
+      .populate("item")
+      .populate("consumer")
+      .populate("distributor");
     res.status(200).send(orders);
   } catch (err) {
     next(err);
   }
 });
 
-router.route("/order/:id")
+router
+  .route("/order/:id")
   //get an order
   .get(protect, async (req, res, next) => {
     try {
       token = req.headers.authorization.split(" ")[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const order = await OrderModel.find({ _id: req.params.id }).populate("item").populate("consumer").populate("distributor");
+      const order = await OrderModel.find({ _id: req.params.id })
+        .populate("item")
+        .populate("consumer")
+        .populate("distributor");
       res.status(200).send(order[0]);
     } catch (err) {
       next(err);
@@ -97,9 +105,9 @@ router.route("/order/:id")
         quantity: 1,
         paymode: "Cash",
       });
-      // res.status(200).send({ success: true });
     } catch (err) {
-      next(err);
+      console.log(err);
+      // next(err);
     }
   });
 
