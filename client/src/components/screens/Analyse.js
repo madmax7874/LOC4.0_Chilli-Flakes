@@ -51,7 +51,7 @@ const Analyse = () => {
         <Container>
             <div style={{textAlign:"center",padding:"1rem"}}>
                 <h2 style={{margin:"1rem"}}>Hello Manufacturer</h2>
-                <h6 style={{margin:"1rem",textAlign:"center"}}>Analyse and track which distributors are used more and give discounts to them accordinly!</h6>
+                <h6 style={{margin:"1rem",textAlign:"center"}}>Analyse and track which distributors are used more and give discounts to them accordingly!</h6>
                 <MyPieChart data={vData}/>
             </div>
         </Container>
