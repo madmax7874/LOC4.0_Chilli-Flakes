@@ -38,7 +38,7 @@ const Update = () => {
       const response = await axios.post("/api/private/store", data, config);
       alert.show("Item Added", { type: "success" });
 
-      navigate("/store");
+      navigate("/");
     } catch (error) {
       Swal.fire(`${error.response.data.error}`, "", "error");
     }
