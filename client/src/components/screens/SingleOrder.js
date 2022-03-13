@@ -10,6 +10,8 @@ import {
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { useAlert } from "react-alert";
+
 const axios = require("axios");
 
 function convertURIToImageData(URI) {
@@ -36,6 +38,7 @@ function SingleOrder() {
   const { id } = useParams();
   const [order, setOrder] = useState({});
   const [loading, setLoading] = useState(false);
+  const alert = useAlert();
 
   useEffect(async () => {
     const config = {
@@ -53,6 +56,23 @@ function SingleOrder() {
       console.log(error);
     }
   }, []);
+
+  const RenderButton = () => {
+    const role = localStorage.getItem("role");
+    if (
+      (order.status == "At distributor" && role == "distributor") ||
+      (order.status == "Placed" && role == "manufacturer")
+    ) {
+      return (
+        <Col sm={12} md={2} style={{ margin: "1rem" }}>
+          <Button onClick={() => updatingStatus(order._id)}>
+            Update Status
+          </Button>
+        </Col>
+      );
+    }
+    return null;
+  };
 
   convertURIToImageData(order.qrcode).then(function (imageData) {
     setOrder((prevState) => ({
@@ -79,8 +99,11 @@ function SingleOrder() {
     const url = `/api/private/order/${id}`;
     try {
       const { data } = await axios.put(url, { status: mystatus }, config);
-      setOrder(data);
-      // setLoading(false)
+      setOrder((prevState) => ({
+        ...prevState,
+        status: mystatus,
+      }));
+      alert.show("Item Added", { type: "success" });
     } catch (error) {
       console.log(error);
     }
@@ -132,19 +155,9 @@ function SingleOrder() {
                     <h5>Status: Order {order.status}</h5>
                   </Col>
                   <Col sm={12} md={5}></Col>
-                  {localStorage.getItem("role") != "consumer" && (
-                    <Col sm={12} md={2} style={{ margin: "1rem" }}>
-                      <Button onClick={() => updatingStatus(order._id)}>
-                        Update Status
-                      </Button>
-                    </Col>
-                  )}
+                  <RenderButton />
                 </Row>
               </Card.Title>
-              {/* <Card.Text>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </Card.Text> */}
             </Card.Body>
           </Card>
         </Container>

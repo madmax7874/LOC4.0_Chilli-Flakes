@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const axios = require("axios");
@@ -69,21 +68,31 @@ function Store() {
               <Card.Text>Price: ₹{item.price}</Card.Text>
             </Col>
             <br />
-            <br />
-            <Col sm={12} style={{ textAlign: "center" }}>
-              <Button
-                variant="success"
-                style={{ margin: "0.5rem" }}
-                onClick={() => orderConfirm(item)}
-              >
-                Order Now
-              </Button>
-            </Col>
-            <br />
-            <br />
+
+            {localStorage.getItem("role") == "consumer" && (
+              <>
+                <br />
+                <Col sm={12} style={{ textAlign: "center" }}>
+                  <Button
+                    variant="success"
+                    style={{ margin: "0.5rem" }}
+                    onClick={() => orderConfirm(item)}
+                  >
+                    Order Now
+                  </Button>
+                </Col>
+                <br />
+              </>
+            )}
+
             <Col
               sm={12}
-              style={{ color: "red", textAlign: "center", fontSize: "0.9rem" }}
+              style={{
+                color: "red",
+                textAlign: "center",
+                fontSize: "0.9rem",
+                padding: "0.5rem",
+              }}
             >
               <Card.Text>
                 Only <b>{item.quantity}</b> left!!!
