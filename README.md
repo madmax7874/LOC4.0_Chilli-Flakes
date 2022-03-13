@@ -18,3 +18,10 @@
 ![alt text](https://github.com/madmax7874/LOC4.0_Chilli-Flakes/blob/main/client/src/assets/screenshots/orders.png?raw=true)
 ![alt text](https://github.com/madmax7874/LOC4.0_Chilli-Flakes/blob/main/client/src/assets/screenshots/singleOrder.png?raw=true)
 ![alt text](https://github.com/madmax7874/LOC4.0_Chilli-Flakes/blob/main/client/src/assets/screenshots/analyse.png?raw=true)
+
+### Get Started
+* run ```npm i``` in server and client directory
+* ```npm start``` for client and ```npm run server``` for server
+* Create some environment variables:
+  * Database url for connection
+  * JWT secret key and expiry time
