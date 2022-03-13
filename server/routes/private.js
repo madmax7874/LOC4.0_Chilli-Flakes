@@ -145,4 +145,19 @@ router
     }
   })
 
+  router.route("/analyse")
+  .get(protect, async (req, res, next) => {
+    try {
+      token = req.headers.authorization.split(" ")[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+      const data = await OrderModel.find().populate('distributor');
+
+      res.status(200).send(data);
+    } catch (err) {
+      next(err);
+    }
+  });
+
+
 module.exports = router;

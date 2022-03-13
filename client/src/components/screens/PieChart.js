@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 
-const data = [
-  { name: "Group A", value: 500 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 700 },
-  { name: "Group D", value: 300 }
-];
+// const data = [
+//   { name: "Group A", value: 500 },
+//   { name: "Group B", value: 300 },
+//   { name: "Group C", value: 700 },
+//   { name: "Group D", value: 300 }
+// ];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -67,7 +67,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`₹${value}`}</text>
+      >{`Count: ${value}`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -102,7 +102,7 @@ export default function MyPieChart(props) {
         <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
-            data={data}
+            data={props.data}
             cy={100}
             innerRadius={50}
             outerRadius={60}

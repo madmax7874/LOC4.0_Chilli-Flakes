@@ -35,6 +35,7 @@ function convertURIToImageData(URI) {
 }
 
 function SingleOrder() {
+  console.clear()
   const { id } = useParams();
   const [order, setOrder] = useState({});
   const [loading, setLoading] = useState(false);
@@ -50,6 +51,7 @@ function SingleOrder() {
     const url = `/api/private/order/${id}`;
     try {
       const { data } = await axios.get(url, config);
+      console.log(data)
       setOrder(data);
       setLoading(true);
     } catch (error) {
@@ -123,7 +125,7 @@ function SingleOrder() {
             <Card.Body>
               <Row justifyContent>
                 <Col sm={12} md={2}>
-                  <Image src={order.qrcode}></Image>
+                  <Image className='img-fluid' src={order.qrcode}></Image>
                 </Col>
                 <Col sm={6}>
                   <h4 style={{ paddingTop: "1rem" }}>
@@ -131,8 +133,12 @@ function SingleOrder() {
                   </h4>
                   <h4>Quantity: {order.quantity}</h4>
                   <h4>Payment mode: {order.paymode}</h4>
+                  <h4>Ordered date : {order.createdAt.split('T')[0]}</h4>
+                  <h4>Ordered time : {order.createdAt.split('T')[1]}</h4>
+
                 </Col>
               </Row>
+              <br/>
               <Card.Title>
                 <Col sm={12}>
                   <ProgressBar>
@@ -153,6 +159,8 @@ function SingleOrder() {
                 <Row>
                   <Col sm={12} md={4} style={{ margin: "1rem" }}>
                     <h5>Status: Order {order.status}</h5>
+                    <h5>Last updated: {order.updatedAt.split('T')[0]} - {order.updatedAt.split('T')[1]}</h5>
+
                   </Col>
                   <Col sm={12} md={5}></Col>
                   <RenderButton />
