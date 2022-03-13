@@ -13,7 +13,7 @@ import StorePage from "./components/pages/StorePage";
 import UpdatePage from "./components/pages/UpdatePage";
 import OrdersPage from "./components/pages/OrdersPage";
 import SingleOrderPage from "./components/pages/SingleOrderPage";
-
+import AnalysePage from "./components/pages/AnalysePage";
 // css files
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/screens/styles.scss";
@@ -60,6 +60,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <SingleOrderPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/analyse"
+            element={
+              <PrivateRoute>
+                <AnalysePage />
               </PrivateRoute>
             }
           />
