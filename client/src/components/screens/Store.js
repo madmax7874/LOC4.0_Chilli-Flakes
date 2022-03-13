@@ -44,6 +44,7 @@ function Store() {
         try {
           const { data } = await axios.post(url, item, config);
           if (data.success) {
+            navigate('/orders')
             console.log(data);
           }
         } catch (error) {
